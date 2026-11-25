@@ -9,6 +9,7 @@ public final class PhenotypeRequest {
 
     /** Returns an owned replacement, or null to forward the original unchanged. */
     public static Parcel rewrite(Parcel data, String hostPackage) {
+        if (data == null) return null;
         int saved = data.dataPosition();
         Parcel out = null;
         try {

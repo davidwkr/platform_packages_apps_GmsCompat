@@ -35,12 +35,15 @@ Tests compile against SDK signatures plus a compile-only hidden API stub. The
 stub is excluded from the dex; app_process uses the device's real BinderWrapper,
 Parcel and Binder. Tests only write a standalone dex to /data/local/tmp.
 
-On a Xiaomi apollo running a modified VoltageOS Android 17 build, the suite passed 56 assertions, including
+On a Xiaomi apollo running a modified VoltageOS Android 17 build, the hardened suite passed 59 assertions, including
 shorter/longer replacement strings, Binder references, unknown/trailing fields,
 wrong services, already-correct identities, duplicate/malformed fields, input
-position preservation, connection lifecycle forwarding and the real wrapper's
-transaction/reply path. This is local Binder testing, not cross-process Binder
-or Wallet end-to-end verification.
+position preservation, null Parcel/Intent/connection rejection, connection
+lifecycle forwarding and the real wrapper's transaction/reply path. The diagnostic
+build emits at most one rewritten and one unchanged transaction-46 marker per
+connection; markers contain the host package and boolean outcome, never Parcel
+contents. This is local Binder testing, not cross-process Binder or Wallet
+end-to-end verification.
 
 ## Build and rollout boundary
 

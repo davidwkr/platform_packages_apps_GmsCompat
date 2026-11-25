@@ -27,6 +27,8 @@ public final class ProviderInstallerCompatTest {
         Intent intent=new Intent("com.google.android.gms.phenotype.service.START").setPackage(PhenotypeRequest.GMS);
         ServiceConnection w=ProviderInstallerCompat.maybeWrap(host,intent,Process.myUserHandle(),c);
         check(w!=null);
+        check(ProviderInstallerCompat.maybeWrap(host,null,Process.myUserHandle(),c)==null);
+        check(ProviderInstallerCompat.maybeWrap(host,intent,Process.myUserHandle(),null)==null);
         ComponentName name=new ComponentName(PhenotypeRequest.GMS,"Test");
         Binder base=new Binder() {
             { attachInterface(null,PhenotypeRequest.DESCRIPTOR); }

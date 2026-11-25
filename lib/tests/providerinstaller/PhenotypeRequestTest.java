@@ -50,6 +50,7 @@ public final class PhenotypeRequestTest {
     }
     public static void main(String[] args) {
         roundtrip("com.google.android.apps.walletnfcrel"); roundtrip("a.b");
+        check(PhenotypeRequest.rewrite(null, "host") == null);
         Parcel[] rejected={request(79,PhenotypeRequest.GMS,false,null,null),
             request(51,"already.correct",false,null,null),
             request(51,PhenotypeRequest.GMS,true,null,null),Parcel.obtain()};
